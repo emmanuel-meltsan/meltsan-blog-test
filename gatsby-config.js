@@ -1,26 +1,71 @@
 /**
- * Configure your Gatsby site with this file.
+ * Configuración principal de Gatsby para el sitio Meltsan Solutions®.
  *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
+ * - Define `siteMetadata` con información de la empresa, autor, redes sociales y organización.
+ * - Incluye palabras clave, descripción, idioma y titular principal para SEO.
+ * - Configura plugins esenciales: sitemap, imágenes, transformación de Markdown, RSS feed y PWA manifest.
+  * - Utiliza `gatsby-source-filesystem` para cargar contenido del blog y recursos de imágenes.
  */
+
 
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  siteMetadata: {
-    title: `Gatsby Starter Blog`,
+siteMetadata: {
+    headline: `Soluciones Cloud y Data que impulsan tu transformación digital.`,
+    keywords: [
+      "Cloud",
+      "Transformación Digital",
+      "Data",
+      "Seguridad",
+      "Consultoría TI",
+      "Meltsan Solutions"
+    ],
+    language: "es-MX",
+    title: `Meltsan Solutions® | Soluciones Cloud, Data y Tecnología Empresarial`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Meltsan Solutions`,
+      summary: `Empresa mexicana que impulsa el crecimiento de organizaciones mediante soluciones innovadoras, integración de talento y tecnología de punta enfocada en ecosistemas Cloud.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `Meltsan Solutions® ofrece servicios de consultoría y desarrollo en Cloud, Data, Seguridad y Modernización de Aplicaciones para sectores clave como banca, fintech, seguros y más.`,
+    siteUrl: `https://www.meltsan.us/`,
     social: {
-      twitter: `kylemathews`,
+      facebook: `meltsansolutions`,
+      linkedin: `company/meltsansolutions`,
+      instagram: `meltsansolutions`,
+      x: `MeltsanSol`,
+    },
+    organization: {
+      name: `Meltsan Solutions®`,
+      legalName: `Meltsan Solutions S.A. de C.V.`,
+      url: `https://www.meltsan.us/`,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: "info@meltsan.us",
+          availableLanguage: ["Spanish", "English"]
+        }
+      ],
+      sameAs: [
+        `https://www.linkedin.com/company/meltsansolutionsold/`,
+        `https://www.facebook.com/MeltsanSolutions/`,
+        `https://www.instagram.com/meltsansolutions/`,
+      ],
+      logo: `/static/meltsan-logo.png`,
+      foundingDate: `2014`,
+      founders: [ `Equipo Meltsan`],
+      address: {
+        country: `México`,
+      },
     },
   },
   plugins: [
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -56,8 +101,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -78,11 +121,16 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
+                  author: node.fields.author,
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
+                  categories: node.fields.tags,
+                  custom_elements: [
+                    { "content:encoded": node.html },
+                    { readingTime: node.fields.readingTime }
+                  ],
                 })
               })
             },
@@ -108,17 +156,20 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+      policy: [{ userAgent: "*", allow: "/" }]
+    }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `Gatsby`,
+        name: `Meltsan Blog`,
+        short_name: `Meltsan`,
         start_url: `/`,
         background_color: `#ffffff`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/meltsan-logo.png`,
       },
     },
   ],
