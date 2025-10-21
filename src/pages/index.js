@@ -31,6 +31,9 @@ const BlogIndex = ({ data, location }) => {
 
           return (
             <li key={post.fields.slug}>
+                    <h2>
+                  <Link to="/all-post">Leer test blog ui</Link>
+                  </h2>
               <article
                 className="post-list-item"
                 itemScope
