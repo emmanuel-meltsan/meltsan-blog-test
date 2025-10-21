@@ -15,6 +15,7 @@ function onCreateNode({ node, actions, getNode }) {
 
   if (node.internal.type === 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode, basePath: 'content/blog' }).replace(/\/$/, '')
+    const information = node.frontmatter.information || []
 
     createNodeField({ name: 'slug', node, value: slug })
     createNodeField({ name: 'title', node, value: node.frontmatter.title || 'Sin título' })
@@ -23,6 +24,8 @@ function onCreateNode({ node, actions, getNode }) {
     createNodeField({ name: 'author', node, value: 'MELTSA SOLUTIONS' })
     createNodeField({ name: 'tags', node, value: node.frontmatter.tags || [] })
     createNodeField({ name: 'readingTime', node, value: readingTime(node.rawMarkdownBody).text })
+    createNodeField({ name: 'information', node, value: information })
+
   }
 }
 

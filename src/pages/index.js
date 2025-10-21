@@ -49,9 +49,16 @@ const BlogIndex = ({ data, location }) => {
                     dangerouslySetInnerHTML={{
                       __html: post.frontmatter.description || post.excerpt,
                     }}
-                    itemProp="description"
                   />
+                  <div className="post-tags">
+                    {post.frontmatter.tags?.map((tag) => (
+                      <span key={tag} className="badge">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </section>
+
               </article>
             </li>
           )
