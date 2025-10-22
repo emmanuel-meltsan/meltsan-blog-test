@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ArticleInfo, TagsChips, Image } from "../../components";
+import { ArticleInfo, TagsChips, Image, ShareSocialMedia } from "../../components";
 import { Grid, Typography } from "@mui/material";
 
 const BlogPostTemplate = () => {
@@ -18,6 +18,12 @@ const BlogPostTemplate = () => {
             <TagsChips tags={["Guías Prácticas", "KYC", "Verificación", "Onboarding", "Due Diligence"]} />
             <ArticleInfo author="Equipo MELTSAN" postDate="2025-12-23" readingTime={12} />
             <Image path={"/images/aml-infographic.jpg"} />
+
+            <ShareSocialMedia
+                url="https://miweb.com/post/123"
+                title="Mira este post increíble"
+                hashtags={["Blog", "React", "Tutorial"]}
+            />
 
         </div>
     );
