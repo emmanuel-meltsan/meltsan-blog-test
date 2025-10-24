@@ -55,4 +55,4 @@ La nueva realidad regulatoria en Turquía **exige una respuesta inmediata y cont
 
 ### Fuentes
 
-*   [turke-watchdog-power-freeze-crypto-accounts-crackdown](https://es.cointelegraph.com/news/turke-watchdog-power-freeze-crypto-accounts-crackdown) 
+*[turke-watchdog-power-freeze-crypto-accounts-crackdown](https://es.cointelegraph.com/news/turke-watchdog-power-freeze-crypto-accounts-crackdown) 
