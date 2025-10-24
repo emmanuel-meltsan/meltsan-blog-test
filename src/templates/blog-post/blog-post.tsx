@@ -1,32 +1,80 @@
 import * as React from "react"
-import { ArticleInfo, TagsChips, Image, ShareSocialMedia } from "../../components";
+import { ArticleInfo, TagsChips, Image, ShareSocialMedia, ContacUs } from "../../components";
 import { Grid, Typography } from "@mui/material";
+import { graphql } from "gatsby";
 
-const BlogPostTemplate = () => {
+type BlogPostData = {
+  markdownRemark: {
+    html: string;
+    fields: { slug: string };
+    frontmatter: {
+      title: string;
+      author: string;
+      date: string;
+      tags: string[];
+      readingTime: number;
+      image: string;
+    };
+  };
+};
 
-    return (
+type Props = {
+  data: BlogPostData;
+};
 
-        <div style={{ borderColor: "red" }}>
+const BlogPostTemplate = ({ data }: Props) => {
+  const { markdownRemark } = data
+  const { title, date, author, tags, readingTime, image } = markdownRemark.frontmatter
 
-            <Grid container alignItems={'center'} justifyContent={'center'}>
-                <Grid>
-                    <Typography variant="h3">
-                        Guía Práctica: Implementación de Procesos KYC Eficientes
-                    </Typography>
-                </Grid>
-            </Grid>
-            <TagsChips tags={["Guías Prácticas", "KYC", "Verificación", "Onboarding", "Due Diligence"]} />
-            <ArticleInfo author="Equipo MELTSAN" postDate="2025-12-23" readingTime={12} />
-            <Image path={"/images/aml-infographic.jpg"} />
+  const actualPostdate = new Date(Date.now())
+  const formattedDate = actualPostdate.toLocaleDateString("es-MX", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
 
-            <ShareSocialMedia
-                url="https://miweb.com/post/123"
-                title="Mira este post increíble"
-                hashtags={["Blog", "React", "Tutorial"]}
-            />
+  return (
+    <div>
+      <Grid container alignItems="center" justifyContent="center">
+        <Grid>
+          <Typography variant="h3">{title}</Typography>
+        </Grid>
+      </Grid>
 
-        </div>
-    );
+      <TagsChips tags={tags} />
+      <ArticleInfo author={author} postDate={formattedDate} readingTime={readingTime} />
+      <Image path={image} />
 
+      <ShareSocialMedia
+        url={`https://meltsan.com${markdownRemark.fields.slug}`}
+        title={title}
+        hashtags={tags}
+      />
+      <section
+        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+        itemProp="articleBody"
+      />
+      <hr />
+      <ContacUs />
+    </div>
+  )
 }
-export default BlogPostTemplate;
+
+export const pageQuery = graphql`
+  query BlogPostBySlug($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      html
+      fields { slug }
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        author
+        tags
+        readingTime
+        image
+      }
+    }
+  }
+`
+
+export default BlogPostTemplate

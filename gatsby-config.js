@@ -169,7 +169,7 @@ siteMetadata: {
         start_url: `/`,
         background_color: `#ffffff`,
         display: `minimal-ui`,
-        icon: `src/images/meltsan-logo.png`,
+        icon: `public/images/meltsan-logo.png`,
       },
     },
   ],
