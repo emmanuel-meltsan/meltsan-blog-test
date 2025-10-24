@@ -1,4 +1,5 @@
-import * as React from "react"
+import * as React from "react";
+import BlogPostTemplate from "../templates/blog-post/blog-post";
 import { graphql, Link } from "gatsby"
 import { Box, Card, CardContent, Grid, Typography, Chip } from "@mui/material"
 
@@ -22,7 +23,7 @@ type BlogGalleryProps = {
     }
 }
 
-const BlogGallery = ({ data }: BlogGalleryProps) => {
+const Allpost = ({ data }: BlogGalleryProps) => {
     const posts = data.allMarkdownRemark.nodes
 
     return (
@@ -62,7 +63,8 @@ const BlogGallery = ({ data }: BlogGalleryProps) => {
     )
 }
 
-export default BlogGallery;
+
+export default Allpost;
 
 export const pageQuery = graphql`
   query BlogIndexQuery {
@@ -75,10 +77,9 @@ export const pageQuery = graphql`
         frontmatter {
           title
           description
-          tags
+          tags          
         }
       }
     }
   }
 `
-

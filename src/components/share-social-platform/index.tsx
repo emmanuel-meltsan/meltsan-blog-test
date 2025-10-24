@@ -9,7 +9,7 @@ type ShareProps = {
     hashtags?: string[];
 };
 
-const ShareSocialMedia = ({ url, title = "", hashtags = [] }: ShareProps) => {
+const ShareSocialMedia = ({ url, title = "", hashtags = ["as", "as"] }: ShareProps) => {
     const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const handleCopy = () => {
@@ -19,7 +19,7 @@ const ShareSocialMedia = ({ url, title = "", hashtags = [] }: ShareProps) => {
 
     const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
         url
-    )}&text=${encodeURIComponent(title)}&hashtags=${hashtags.join(",")}`;
+    )}&text=${encodeURIComponent(title)}}`;
 
     const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
         url

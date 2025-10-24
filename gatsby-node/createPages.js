@@ -9,7 +9,7 @@
 
 
 const path = require(`path`)
-const blogPost = path.resolve(`./src/templates/blog-post.js`)
+const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
 
 
 /**
