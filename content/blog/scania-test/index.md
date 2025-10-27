@@ -2,7 +2,6 @@
 title: La Amenaza Inminente Cómo la Nueva Legislación AML en Turquía Podría Congelar sus Activos Cripto y Bancarios
 date: "2025-01-15T22:12:03.284Z"
 description: "Descubra cómo la nueva legislación AML en Turquía podría poner en riesgo sus activos cripto y bancarios, y qué medidas tomar para protegerse."
-author: Meltsan Team
 tags:
   - AML
   - MASAK
@@ -12,12 +11,15 @@ tags:
   - lavado de dinero
   - cumplimiento normativo
   - riesgo financiero
+featuredImage: "./aml-infographic.jpg"
 ---
 
 ![Img](./aml-infographic.jpg)
 
 
 > Imagine despertar un día y descubrir que sus cuentas, tanto las tradicionales como las de criptomonedas, han sido congeladas.
+
+
 
 Esta no es una pesadilla lejana, sino una posibilidad cada vez más real para empresas y particulares que operan en mercados volátiles. **Turquía se prepara para implementar una nueva y estricta legislación que otorgará a *MASAK*, la unidad de inteligencia financiera del país, el poder sin precedentes de congelar activos para combatir el lavado de dinero** (*AML*). En un entorno económico donde la *lira turca* ha visto una depreciación constante desde 2018, impulsando a muchos hacia las *criptomonedas* como refugio, **la pregunta no es si sus operaciones están bajo escrutinio, sino cuándo.** ¿Está su negocio preparado para enfrentar esta nueva era de vigilancia financiera, o se arriesga a la parálisis total de sus operaciones?
 

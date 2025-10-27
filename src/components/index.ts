@@ -4,11 +4,14 @@ import { default as Image } from './post-img/index';
 import { default as ShareSocialMedia } from './share-social-platform/index';
 import { default as ContacUs } from './contact-us/index';
 import { default as BlogGallery } from './blog-Gallery/index';
+import { default as Seo } from './seo/index';
+
 export {
     ArticleInfo,
     TagsChips,
     Image,
     ShareSocialMedia,
     ContacUs,
-    BlogGallery
+    BlogGallery,
+    Seo
 };

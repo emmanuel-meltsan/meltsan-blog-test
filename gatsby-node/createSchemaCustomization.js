@@ -42,6 +42,7 @@ function createSchemaCustomization({ actions }) {
       date: Date @dateformat
       author: String
       tags: [String]
+      featuredImage: File @fileByRelativePath
     }
 
     type Fields {
