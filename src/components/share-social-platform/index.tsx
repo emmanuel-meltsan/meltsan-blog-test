@@ -54,7 +54,6 @@ const ShareSocialMedia = ({ url, title = "", hashtags = ["as", "as"] }: SharePro
                     </Tooltip>
                 ))}
 
-                {/* Botón Copiar extra si quieres */}
                 <Button
                     variant="outlined"
                     startIcon={<ShareRounded />}

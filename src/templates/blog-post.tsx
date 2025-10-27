@@ -1,7 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Grid, Typography } from "@mui/material"
-import { ArticleInfo, TagsChips, Image, ShareSocialMedia, ContacUs } from "../components"
+import { ArticleInfo, TagsChips, Image, ShareSocialMedia, ContacUs, Seo } from "../components"
+
 
 type BlogPostData = {
   markdownRemark: {
@@ -12,7 +13,6 @@ type BlogPostData = {
     }
     frontmatter: {
       title: string
-      author: string
       date: string
       tags: string[]
     }
@@ -25,7 +25,7 @@ type Props = {
 
 const BlogPostTemplate: React.FC<Props> = ({ data }) => {
   const { markdownRemark } = data
-  const { title, date, author, tags } = markdownRemark.frontmatter
+  const { title, date, tags } = markdownRemark.frontmatter
   const { slug, readingTime } = markdownRemark.fields
 
   const formattedDate = new Date(date).toLocaleDateString("es-MX", {
@@ -33,9 +33,11 @@ const BlogPostTemplate: React.FC<Props> = ({ data }) => {
     month: "long",
     day: "numeric",
   })
+  const author = "EQUIPO MELTSAN";
 
   return (
     <div>
+
       <Grid container alignItems="center" justifyContent="center">
         <Grid>
           <Typography variant="h3">{title}</Typography>
@@ -49,15 +51,34 @@ const BlogPostTemplate: React.FC<Props> = ({ data }) => {
         dangerouslySetInnerHTML={{ __html: markdownRemark.html }}
         itemProp="articleBody"
       />
-      <ShareSocialMedia
-        url={`https://meltsan.com${"slug"}`}
-        title={title}
-        hashtags={tags}
-      />
+      <ShareSocialMedia url={`https://meltsan.com${slug}`} title={title} hashtags={tags} />
+
 
       <hr />
-      <ContacUs />
+      <footer>
+        <ContacUs />
+      </footer>
+
     </div>
+  )
+}
+
+type postData = {
+  markdownRemark: {
+    frontmatter: {
+      title: string
+      description: string
+    }
+    excerpt: string
+  }
+}
+
+export const Head = ({ data: { markdownRemark: post } }: { data: postData }) => {
+  return (
+    <Seo
+      title={post.frontmatter.title}
+      description={post.frontmatter.description || post.excerpt}
+    />
   )
 }
 
@@ -72,7 +93,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "YYYY-MM-DD")
-        author
         tags
       }
     }
