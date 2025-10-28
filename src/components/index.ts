@@ -5,6 +5,7 @@ import { default as ShareSocialMedia } from './share-social-platform/index';
 import { default as ContacUs } from './contact-us/index';
 import { default as BlogGallery } from './blog-Gallery/index';
 import { default as Seo } from './seo/index';
+import Banner from './banner/index';
 
 export {
     ArticleInfo,
@@ -13,5 +14,6 @@ export {
     ShareSocialMedia,
     ContacUs,
     BlogGallery,
-    Seo
+    Seo,
+    Banner
 };
