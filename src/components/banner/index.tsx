@@ -6,7 +6,7 @@ const Banner = () => {
         <Box
             sx={{
                 width: "100%",
-                height: 250,
+                height: 200,
                 overflow: "hidden",
                 display: "flex",
                 alignItems: "center",
