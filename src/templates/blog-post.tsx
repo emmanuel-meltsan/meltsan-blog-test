@@ -1,38 +1,27 @@
 import * as React from "react"
-import { graphql } from "gatsby"
 import { Grid, Typography } from "@mui/material"
 import { ArticleInfo, TagsChips, Image, ShareSocialMedia, ContacUs, Seo } from "../components"
+import { graphql } from "gatsby"
+import { fronmatter, MarkdownRemark } from "../commons/types/types"
 
 
-type BlogPostData = {
-  markdownRemark: {
-    html: string
-    fields: {
-      slug: string
-      readingTime: number
-    }
-    frontmatter: {
-      title: string
-      date: string
-      tags: string[]
-    }
+type Props = {
+  data: {
+    markdownRemark: MarkdownRemark
   }
 }
 
-type Props = {
-  data: BlogPostData
-}
+const BlogPostTemplate = ({ data }: Props) => {
+  const { title, date, tags } = data.markdownRemark.frontmatter
+  const { slug, readingTime } = data.markdownRemark.fields
 
-const BlogPostTemplate: React.FC<Props> = ({ data }) => {
-  const { markdownRemark } = data
-  const { title, date, tags } = markdownRemark.frontmatter
-  const { slug, readingTime } = markdownRemark.fields
 
   const formattedDate = new Date(date).toLocaleDateString("es-MX", {
     year: "numeric",
     month: "long",
     day: "numeric",
   })
+
   const author = "EQUIPO MELTSAN";
 
   return (
@@ -45,10 +34,10 @@ const BlogPostTemplate: React.FC<Props> = ({ data }) => {
       </Grid>
 
 
-      <ArticleInfo author={author} postDate={formattedDate} readingTime={readingTime} />
+      <ArticleInfo author={author} postDate={formattedDate} readingTime={readingTime ?? 0} />
 
       <section
-        dangerouslySetInnerHTML={{ __html: markdownRemark.html }}
+        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html ?? "" }}
         itemProp="articleBody"
       />
       <ShareSocialMedia url={`https://meltsan.com${slug}`} title={title} hashtags={tags} />
@@ -65,10 +54,7 @@ const BlogPostTemplate: React.FC<Props> = ({ data }) => {
 
 type postData = {
   markdownRemark: {
-    frontmatter: {
-      title: string
-      description: string
-    }
+    frontmatter: fronmatter
     excerpt: string
   }
 }
@@ -81,7 +67,6 @@ export const Head = ({ data: { markdownRemark: post } }: { data: postData }) => 
     />
   )
 }
-
 export const pageQuery = graphql`
   query BlogPostBySlug($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -96,7 +81,5 @@ export const pageQuery = graphql`
         tags
       }
     }
-  }
-`
-
+  }`;
 export default BlogPostTemplate

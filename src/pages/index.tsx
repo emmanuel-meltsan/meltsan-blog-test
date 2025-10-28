@@ -3,35 +3,18 @@ import BlogPostTemplate from "../templates/blog-post/blog-post";
 import { graphql, Link } from "gatsby"
 import { Box, Card, CardContent, Grid, Typography, Chip } from "@mui/material"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { MarkdownRemark } from "../commons/types/types";
 
-type BlogPostNode = {
-    fields: {
-        slug: string
-    }
-    frontmatter: {
-        title: string
-        description?: string
-        tags?: string[]
-        featuredImage?: {
-            childImageSharp: {
-                gatsbyImageData: IGatsbyImageData
-            }
-        }
-
-    }
-    excerpt: string
-}
-
-type BlogGalleryProps = {
+type Props = {
     data: {
         allMarkdownRemark: {
-            nodes: BlogPostNode[]
+            nodes: MarkdownRemark[]
         }
     }
-}
+};
 
-const Allpost = ({ data }: BlogGalleryProps) => {
-    const posts = data.allMarkdownRemark.nodes
+const Allpost = ({ data }: Props) => {
+    const posts = data.allMarkdownRemark.nodes;
 
     return (
 
