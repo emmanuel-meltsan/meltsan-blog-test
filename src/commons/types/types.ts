@@ -18,4 +18,5 @@ export type MarkdownRemark = {
     fields: Fields;
     html?: string;
     excerpt?: string;
+    tableOfContents?: string;
 };

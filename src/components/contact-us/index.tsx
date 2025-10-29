@@ -9,11 +9,11 @@ const ContacUs = () => {
         <Card
             sx={{
                 p: 4,
-                mt: 6,
-                backgroundColor: "rgba(0,0,0,0.03)",
+                mt: 2,
                 border: "2px solid",
                 borderColor: "grey.300",
                 textAlign: "center",
+
             }}
         >
             <CardContent>

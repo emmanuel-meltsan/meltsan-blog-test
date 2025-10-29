@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Grid, Typography } from "@mui/material"
-import { ArticleInfo, TagsChips, Image, ShareSocialMedia, ContacUs, Seo } from "../components"
+import { Box, Chip, Grid, Typography } from "@mui/material"
+import { ArticleInfo, ShareSocialMedia, ContacUs, Seo, BackButton, TableOfContents } from "../components"
 import { graphql } from "gatsby"
 import { fronmatter, MarkdownRemark } from "../commons/types/types"
 
@@ -25,30 +25,52 @@ const BlogPostTemplate = ({ data }: Props) => {
   const author = "EQUIPO MELTSAN";
 
   return (
-    <div>
+    <Grid container spacing={4}>
+      <Grid size={7} sx={{ mt: 5, marginLeft: "auto" }}>
+        <Box mb={3}>
+          <BackButton />
 
-      <Grid container alignItems="center" justifyContent="center">
-        <Grid>
-          <Typography variant="h3">{title}</Typography>
+        </Box>
+        <Box sx={{ margin: 1 }}>
+          {tags?.map(tag => (
+            <Chip
+              key={tag}
+              label={tag}
+              size="small"
+              sx={{ mr: 1.8, mb: 0.2 }}
+            />
+          ))}
+        </Box>
+
+        <Grid container alignItems="center" justifyContent="center" sx={{ mb: 2 }}>
+          <Grid>
+            <Typography variant="h4" fontWeight={600}>{title}</Typography>
+          </Grid>
         </Grid>
+        <Grid mb={2}>
+          <ArticleInfo author={author} postDate={formattedDate} readingTime={readingTime ?? 0} />
+
+        </Grid>
+
+        <section
+          dangerouslySetInnerHTML={{ __html: data.markdownRemark.html ?? "" }}
+          itemProp="articleBody"
+          style={{ textAlign: "justify" }}
+
+        />
+        <ShareSocialMedia url={`https://meltsan.com${slug}`} title={title} hashtags={tags} />
+
+        <footer>
+          <ContacUs />
+        </footer>
+
       </Grid>
+      <Grid size={3} marginTop={11}>
+        <TableOfContents tableOfContents={data.markdownRemark.tableOfContents} />
+      </Grid>
+    </Grid >
 
 
-      <ArticleInfo author={author} postDate={formattedDate} readingTime={readingTime ?? 0} />
-
-      <section
-        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html ?? "" }}
-        itemProp="articleBody"
-      />
-      <ShareSocialMedia url={`https://meltsan.com${slug}`} title={title} hashtags={tags} />
-
-
-      <hr />
-      <footer>
-        <ContacUs />
-      </footer>
-
-    </div>
   )
 }
 
@@ -80,6 +102,7 @@ export const pageQuery = graphql`
         date(formatString: "YYYY-MM-DD")
         tags
       }
+      tableOfContents(maxDepth: 2)  
     }
   }`;
 export default BlogPostTemplate

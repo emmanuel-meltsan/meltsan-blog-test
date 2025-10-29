@@ -16,14 +16,13 @@ const ArticleInfo = ({ author, postDate, readingTime }: Props) => {
         <Grid container spacing={1} alignItems="center">
 
             <PersonOutline />
-            <Typography variant="subtitle2" color="text.primary" fontWeight="bold">
+            <Typography variant="caption" fontWeight="bold">
                 {author}
             </Typography>
             <CalendarMonthOutlined />
-            <Typography variant="body2">{postDate}</Typography>
+            <Typography variant="caption">{postDate}</Typography>
             <ScheduleOutlined />
-            <Typography variant="body2">{readingTime} min</Typography>
-
+            <Typography variant="caption">{readingTime} min</Typography>
         </Grid>
 
     );
