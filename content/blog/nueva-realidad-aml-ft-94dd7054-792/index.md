@@ -1,6 +1,6 @@
 ---
 
-title: El Cerco se Estrecha: ¿Está Su Organización Preparada para la Nueva Realidad AML/FT?
+title: El Cerco se Estrecha ¿Está Su Organización Preparada para la Nueva Realidad AML/FT?
 
 date: "2025-10-30T19:15:53.843860Z"
 
