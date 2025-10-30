@@ -30,7 +30,6 @@ featuredImage: "./featured_image.jpg"
 
 ![El Despertar de la Pesadilla Digital: El Hackeo en Chiapas y lo que Significa para Su Organización](./featured_image.jpg)
 
-# El Despertar de la Pesadilla Digital: El Hackeo en Chiapas y lo que Significa para Su Organización
 
 Imagine que la información más íntima y crítica de miles de personas, desde actas de nacimiento hasta expedientes médicos, se encuentre a la venta en foros clandestinos por una suma irrisoria. Esta no es una hipótesis lejana; es la cruda realidad que golpeó a la Secretaría de Salud del Estado de Chiapas en octubre de 2025. Un **hackeo masivo expuso más de 70,000 documentos, un tesoro de 62.5 gigabytes de datos sensibles, que ahora circulan en la *dark web***, ofrecidos por apenas 300 dólares por un usuario identificado como Kazu [2]. Este incidente, uno de los ataques más significativos contra una institución pública en Chiapas, es un **escalofriante recordatorio de la vulnerabilidad digital en la que vivimos**.
 
