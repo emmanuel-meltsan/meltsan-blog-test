@@ -4,8 +4,8 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *" # cada 15 minutos
+ # schedule:
+ #   - cron: "*/15 * * * *" # cada 15 minutos
 
 permissions:
   contents: write   
@@ -53,7 +53,7 @@ jobs:
 
       - name: Commit new markdown
         run: |
-          git config user.name "emmanuel Bot"
+          git config user.name "emmanuel lopez"
           git config user.email "emmanuel.lopez@meltsan.com"
           git add content/blog
           git commit -m "add: ${{ env.folder_name }}" || echo "No changes to commit"
