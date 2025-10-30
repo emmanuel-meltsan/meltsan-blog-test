@@ -57,13 +57,6 @@ jobs:
             echo "$MARKDOWN_B64" | base64 --decode > "$BLOG_PATH/$FOLDER/index.md"
             echo "Saved decoded post in $BLOG_PATH/$FOLDER/index.md"
       # ─────────────── Fin Fetch Markdown ───────────────
-      - name: Commit new markdown
-        run: |
-            git config --global user.name "GitHub Action Bot"
-            git config --global user.email "bot@github.com"
-            git add content/blog
-            git commit -m "add: ${{ env.folder_name }}" || echo "No changes to commit"
-            git push
 
       - name: Detect package manager
         id: detect-package-manager
