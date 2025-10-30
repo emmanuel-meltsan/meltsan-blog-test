@@ -5,12 +5,11 @@
 name: Deploy Gatsby site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *" # cada 3 minutos
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -36,6 +35,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      # ─────────────── Fetch Markdown desde API ───────────────
+      - name: Fetch and decode Markdown from API
+        id: fetch
+        env:
+          API_URL: https://5xt0w80d-8000.usw3.devtunnels.ms/api/v1/get-blog
+          BLOG_PATH: content/blog
+        run: |
+            echo "Fetching markdown from API..."
+            RESPONSE=$(curl -s $API_URL)
+            
+            # Extraer folder_name y contenido Base64
+            FOLDER=$(echo "$RESPONSE" | jq -r '.folder_name')
+            MARKDOWN_B64=$(echo "$RESPONSE" | jq -r '.markdown_base64')
+            
+            # Guardar folder_name en variable de entorno de GitHub
+            echo "folder_name=$FOLDER" >> $GITHUB_ENV
+            
+            # Crear carpeta y guardar Markdown
+            mkdir -p "$BLOG_PATH/$FOLDER"
+            echo "$MARKDOWN_B64" | base64 --decode > "$BLOG_PATH/$FOLDER/index.md"
+            echo "Saved decoded post in $BLOG_PATH/$FOLDER/index.md"
+      # ─────────────── Fin Fetch Markdown ───────────────
+      - name: Commit new markdown
+        run: |
+            git config --global user.name "GitHub Action Bot"
+            git config --global user.email "bot@github.com"
+            git add content/blog
+            git commit -m "add: ${{ env.folder_name }}" || echo "No changes to commit"
+            git push
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
